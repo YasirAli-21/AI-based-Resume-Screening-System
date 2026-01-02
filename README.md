@@ -19,25 +19,25 @@
 ---
 
 ## 🌟 Overview <a name="overview"></a>
-Job market mein competition bohot zyada hai aur aksar achay candidates sirf "ATS (Applicant Tracking System)" ki wajah se filter ho jate hain. **YSENTRY AI** ek specialized tool hai jo aapke resume ko scan karta hai aur batata hai ke wo Job Description (JD) ke mutabiq kitna perfect hai.
+In a highly competitive job market, many talented candidates are filtered out by "ATS (Applicant Tracking Systems)" before a human ever sees their resume. **YSENTRY AI** is a specialized tool that bridges this gap by scanning your resume against specific Job Descriptions (JD) to ensure maximum compatibility.
 
-* **Smart Match Scoring:** Interactive SVG percentage circle ke zariye instant match score dikhata hai.
-* **Role Prediction:** Aapke skills ko analyze kar ke aapka professional role predict karta hai.
-* **Quantifiable Insights:** Batata hai ke kahan numbers (%) aur metrics add karne ki zaroorat hai.
-* **Activity Intelligence:** Aapke career progress ko track karne ke liye last **21** ⚡ scans ki history rakhta hai.
+* **Smart Match Scoring:** Features an interactive SVG percentage circle for instant visual feedback.
+* **Role Prediction:** Automatically analyzes skills and experience to predict your professional role.
+* **Quantifiable Insights:** Identifies missing metrics (%) and key action verbs required for modern resumes.
+* **Activity Intelligence:** Tracks and displays exactly the last **21** ⚡ scans to help users monitor their improvement over time.
 
 ---
 
 ## 🎯 Problem Statement <a name="problem-statement"></a>
-Aksar candidates ko pata nahi chalta ke unka resume shortlist kyun nahi ho raha. Manual analysis mein bohot waqt lagta hai. **YSENTRY AI** is problem ko solve karta hai by providing:
-1. Instant feedback on keyword matching.
+Most job seekers struggle to identify why their applications aren't receiving responses. Manual resume auditing is time-consuming and prone to human error. **YSENTRY AI** solves this by providing:
+1. Instant feedback on keyword alignment.
 2. Structural improvement suggestions.
-3. Comparative analysis between Resume and Job Description.
+3. Comparative analysis between candidate experience and job requirements.
 
 ---
 
 ## 🚀 Getting Started <a name="getting-started"></a>
-Follow these steps to run YSENTRY AI locally:
+Follow these steps to run YSENTRY AI on your local machine:
 
 ### Step 1: Clone the Repository
 `git clone https://github.com/YasirAli-21/YSentry-Resume-AI.git`
@@ -55,69 +55,69 @@ Follow these steps to run YSENTRY AI locally:
 ---
 
 ## 🛠️ Tech Stack & Libraries <a name="tech-stack--libraries"></a>
-* 🐍 **Python 3.10+** – Core programming.
-* 🔥 **Flask** – Lightweight Web Framework.
-* 📄 **Pdfplumber** – Advanced PDF text extraction logic.
-* 🎨 **Tailwind CSS** – Professional & Responsive UI design.
-* 📊 **Jinja2** – Dynamic templating for results and history.
+* 🐍 **Python 3.10+** – Primary logic and backend.
+* 🔥 **Flask** – Lightweight web framework for the dashboard.
+* 📄 **Pdfplumber** – Precision PDF text extraction.
+* 🎨 **Tailwind CSS** – Modern, responsive UI/UX.
+* 📊 **Jinja2** – Dynamic data rendering for results and history.
 
 ---
 
 ## 💻 Project Execution <a name="project-execution"></a>
-Run the Flask application:
+Run the Flask application using:
 `python app.py`
 
-*Once running, visit: `http://127.0.0.1:5000`*
+*Once initialized, visit: `http://127.0.0.1:5000` in your browser.*
 
 ---
 
 ## 🧠 Analysis Logic & Technical Details <a name="analysis-logic--technical-details"></a>
-The "Intelligence" of YSENTRY AI follows a systematic approach:
+The "Intelligence" of YSENTRY AI follows a structured document processing pipeline:
 
 
 
 ### 🔹 PDF Parsing
-System uses `pdfplumber` to extract clean text from multi-page resumes without losing formatting context.
+The system utilizes `pdfplumber` to extract raw text from complex PDF layouts, ensuring no vital information is lost during the conversion.
 
 ### 🔹 Keyword Analysis
-Algorithm performs a case-insensitive check against industry-standard keywords (e.g., PMO, Software Engineer, Data Analyst).
+Our algorithm performs a case-insensitive cross-reference against a database of industry-specific keywords (e.g., PMO, Software Engineer, Data Scientist).
 
 ### 🔹 Scoring Engine
-Match score generate karne ke liye lexical density aur job-specific keyword frequency ka use kiya jata hai.
+Scores are calculated using lexical density algorithms, measuring the frequency and relevance of match-keywords found within the resume relative to the JD.
 
 ### 🔹 Recommendation Logic
-System check karta hai ke kya resume mein "Action Verbs" aur "Quantifiable Metrics" (%) maujood hain ya nahi.
+The system audits the resume for "Impact Metrics" and "Action Verbs," providing specific suggestions to make the resume more result-oriented.
 
 ---
 
 ## ⚙️ System Workflow <a name="system-workflow"></a>
-1. **Input:** User apna Resume (PDF) upload karta hai aur Job Description paste karta hai.
-2. **Extraction:** PDF se sara text extract kar ke lowercase mein convert kiya jata hai.
-3. **Processing:** Role detection aur score calculation logic run hota hai.
-4. **Visualization:** Match score ek **Animated SVG Circle** mein dikhaya jata hai.
-5. **Logging:** Result ko history table mein save kiya jata hai (Last **21** limit).
+1. **Input:** User uploads a Resume (PDF) and provides the target Job Description.
+2. **Extraction:** Text is normalized to lowercase and stripped of redundant whitespace.
+3. **Processing:** Role classification and scoring logic are triggered.
+4. **Visualization:** Match results are rendered via an **Animated SVG Circle**.
+5. **Logging:** The analysis is logged in the Activity History, maintaining a limit of exactly **21** recent scans.
 
 ---
 
 ## 📊 System Features <a name="system-features"></a>
-* 🔍 **Deep Scan:** Resume aur JD ka detailed comparison.
-* 📈 **Visual Analytics:** Percentage circle for better readability.
-* 📝 **Strengths & Weaknesses:** Detailed bullet points for improvement.
-* 🕒 **Scan History:** Tracks exactly **21** previous attempts.
-* 🖨️ **Print Ready:** Results ko PDF ya Paper par print karne ka option.
+* 🔍 **Deep Scan:** Comprehensive comparison between candidate profile and JD requirements.
+* 📈 **Visual Analytics:** Real-time match-percentage visualization.
+* 📝 **Actionable Feedback:** Granular strengths and recommendations for resume optimization.
+* 🕒 **Scan History:** Persistent tracking of the last **21** scan events.
+* 🖨️ **Print Ready:** Optimized UI for printing or saving analysis results as a report.
 
 ---
 
 ## ✨ Future Enhancements <a name="future-enhancements"></a>
-* 🤖 **GPT Integration:** Detailed AI-generated summary recommendations.
-* 📊 **Skills Radar Chart:** Visual representation of technical vs soft skills.
-* 📂 **DOCX Support:** MS Word files parsing capability.
-* 📧 **Email Reports:** Analysis results directly to the user's inbox.
+* 🤖 **Large Language Model (LLM) Integration:** For hyper-personalized resume rewriting.
+* 📊 **Competency Mapping:** Radar charts to visualize technical vs. soft skill balance.
+* 📂 **Multi-format Support:** Extending parsing capabilities to `.docx` files.
+* 📧 **Automated Reporting:** Sending detailed analysis reports directly via email.
 
 ---
 
 ## 👨‍💻 Author <a name="author"></a>
-**Yasir Ali** | AI & Web Development | © 2026 YSENTRY
+**Yasir Ali** |IT Enthusiast
 
 [![github](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/YasirAli-21)
 [![linkedin](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yasisahito)
