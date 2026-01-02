@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>YSENTRY AI | Professional Resume Analyzer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; }
+        .glass-card { background: white; border-radius: 2rem; box-shadow: 0 10px 40px rgba(0,0,0,0.04); }
+        .upload-dashed { border: 2px dashed #e2e8f0; border-radius: 2rem; }
+        
+        /* Circle Animation Logic */
+        .circle-container { position: relative; width: 150px; height: 150px; margin: 0 auto; }
+        .circle-bg { fill: none; stroke: #e2e8f0; stroke-width: 10; }
+        .circle-progress { 
+            fill: none; stroke: #4f46e5; stroke-width: 10; stroke-linecap: round;
+            stroke-dasharray: 440; transition: stroke-dashoffset 1s ease-out;
+            transform: rotate(-90deg); transform-origin: 50% 50%;
+        }
+    </style>
+</head>
+<body class="p-6">
+
+    <div class="max-w-6xl mx-auto">
+        <nav class="flex justify-between items-center mb-16">
+            <div class="flex items-center gap-2">
+                <div class="bg-indigo-600 text-white p-2 rounded-xl font-bold italic shadow-md">YS</div>
+                <span class="text-xl font-black text-indigo-900 tracking-tight">YSENTRY AI</span>
+            </div>
+            <div class="flex space-x-8 text-gray-500 font-bold text-sm">
+                <a href="/">Home</a> <a href="#">Features</a> <a href="#history">History</a>
+            </div>
+        </nav>
+
+        <div class="text-center mb-12">
+            <h1 class="text-5xl font-black text-slate-900 mb-4 tracking-tight">AI Resume Analyzer</h1>
+            <p class="text-gray-400 font-medium text-lg">Instantly Improve Your Resume & Compare with Targeted Job Roles</p>
+        </div>
+
+        {% if not result %}
+        <div class="grid md:grid-cols-2 gap-8 mb-20">
+            <form action="/analyze" method="POST" enctype="multipart/form-data" id="mainForm" class="glass-card p-12 upload-dashed flex flex-col items-center justify-center text-center">
+                <div class="bg-indigo-50 p-5 rounded-full mb-6">
+                    <svg class="w-10 h-10 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                </div>
+                <h3 class="text-lg font-bold text-gray-700 mb-2">Drop your resume here or click to browse</h3>
+                <input type="file" name="resume" required class="text-xs text-gray-400 mt-4 cursor-pointer">
+            </form>
+
+            <div class="glass-card p-10 border-t-8 border-indigo-600">
+                <div class="flex items-center gap-2 mb-6">
+                    <span class="text-xl">🎯</span>
+                    <h3 class="font-bold text-indigo-900">Target Job Description</h3>
+                </div>
+                <textarea name="jd" form="mainForm" rows="7" class="w-full bg-gray-50 border rounded-2xl p-5 text-sm outline-none focus:ring-2 focus:ring-indigo-400" placeholder="Paste the job role description here..."></textarea>
+                <button type="submit" form="mainForm" class="w-full mt-6 bg-indigo-600 text-white py-4 rounded-2xl font-black shadow-lg hover:bg-indigo-700 transition-all">Analyze Resume</button>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if result %}
+        <div class="glass-card mb-12 overflow-hidden">
+            <div class="bg-indigo-500 text-white p-12 text-center">
+                <h2 class="text-3xl font-black italic">Resume Analysis Results</h2>
+                <div class="mt-8 flex justify-center gap-4">
+                    <a href="/" class="bg-white/20 px-8 py-2 rounded-xl font-bold text-sm">Analyze Another</a>
+                    <button onclick="window.print()" class="bg-white text-indigo-600 px-8 py-2 rounded-xl font-bold text-sm shadow-lg">Print Results</button>
+                </div>
+            </div>
+
+            <div class="p-10 grid md:grid-cols-2 gap-10 border-b border-gray-100">
+                <div class="text-center p-8 border rounded-3xl bg-gray-50/50">
+                    <p class="text-[10px] font-black text-gray-400 uppercase mb-6 tracking-widest">Match Score</p>
+                    <div class="circle-container">
+                        <svg viewBox="0 0 160 160">
+                            <circle class="circle-bg" cx="80" cy="80" r="70"></circle>
+                            <circle class="circle-progress" cx="80" cy="80" r="70" style="stroke-dashoffset: {{ 440 - (440 * result.score / 100) }};"></circle>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-4xl font-black text-indigo-950">{{ result.score }}%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center p-8 border rounded-3xl flex flex-col justify-center items-center">
+                    <p class="text-[10px] font-black text-gray-400 uppercase mb-4 tracking-widest">Predicted Role</p>
+                    <div class="bg-emerald-500 text-white px-8 py-3 rounded-xl inline-block font-black shadow-md">💼 {{ result.role }}</div>
+                    <p class="text-[10px] text-gray-400 mt-4 italic">Analysis based on extracted core competencies.</p>
+                </div>
+            </div>
+
+            <div class="p-12 space-y-12">
+                <div>
+                    <h3 class="text-indigo-900 font-black text-lg border-b pb-4 mb-6">Strengths:</h3>
+                    <ul class="space-y-4">
+                        {% for s in result.strengths %}
+                        <li class="text-gray-600 text-sm italic flex gap-3"><span class="text-yellow-500">⭐</span> {{ s }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-indigo-900 font-black text-lg border-b pb-4 mb-6">Recommendations & Improvements:</h3>
+                    <ul class="space-y-4">
+                        {% for r in result.recommendations %}
+                        <li class="text-gray-600 text-sm flex gap-3"><span class="text-indigo-500">💡</span> {{ r }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <div id="history" class="mt-20 pb-20">
+            <h3 class="text-2xl font-black text-indigo-950 mb-8 border-l-4 border-indigo-600 pl-4">Recent Activity (Last 21 Scans)</h3>
+            <div class="glass-card overflow-hidden">
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-gray-50 text-indigo-600 uppercase text-[10px] font-black">
+                        <tr><th class="p-6">Role / Profile</th><th class="p-6">Match Score</th><th class="p-6">Timestamp</th></tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        {% for item in history %}
+                        <tr class="hover:bg-indigo-50/20 transition">
+                            <td class="p-6 font-bold text-gray-800">{{ item.role }}</td>
+                            <td class="p-6 font-black text-indigo-600">{{ item.score }}%</td>
+                            <td class="p-6 text-gray-400 font-bold text-xs uppercase">{{ item.date }} | {{ item.timestamp }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
