@@ -1,5 +1,8 @@
 # 🛡️ YSENTRY AI – Professional Resume Analyzer
 
+![CI](https://github.com/YasirAli-21/AI-based-Resume-Screening-System/actions/workflows/python-ci.yml/badge.svg?branch=master)
+
+
 **Optimizing Career Paths through Intelligent Document Analysis & ATS Logic**
 
 ---
